@@ -100,6 +100,8 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
+                String weatherId = prefs.getString("weather_id",null);
                 requestWeather(weatherId);
             }
         });
@@ -179,7 +181,6 @@ public class WeatherActivity extends AppCompatActivity {
         String comfort = "舒适度:" + weather.suggestion.comfort.info;
         String carWash = "洗车指数:" + weather.suggestion.comfort.info;
         String sport = "运动指数:" + weather.suggestion.sport.info;
-        Log.d("sportsport", "showWeatherInfo: "+ sport);
         comfortText.setText(comfort);
         carWashText.setText(carWash);
         sportText.setText(sport);
